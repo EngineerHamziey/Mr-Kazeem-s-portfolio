@@ -1,0 +1,558 @@
+// $red: #f54538;
+$red: rgb(245, 69, 56);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  // height: 10000px;
+  // background-color:rgb(74, 177, 168);
+  // background-color: #333;
+  background: radial-gradient(#525252, #131313);
+  color: #f3f3f3;
+  line-height: 1.5;//1.5 is recommended for accessibility
+  font-size: 0.9rem;
+}
+
+// utility classes starts
+.btn {
+  text-decoration: none;
+
+  &:focus-visible {
+    // outline: 0.2rem solid rgb(16, 145, 44);
+    outline: 0.2rem solid $red;
+  }
+}
+
+.px-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.px-3 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.py-1 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.py-2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.py-3 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+//margins
+.mx-1 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mx-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mx-3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.my-1 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.my-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.my-3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+// utility classes ends
+
+// nav bar
+.nav {
+  // the nave should not be a flex container for the trick to work
+  position: relative;
+  // height of 3.75rem(60px) is ok since the nav btn is 44px by 44px
+  height: 3.75rem;
+  // background-color: rgba(13, 219, 192, 0.2);
+
+  .logo {
+    height:  3.75rem;
+    display: flex;
+
+    &__content {
+      margin: auto 0.5rem;
+      fill: transparent;
+      animation: fill-color 4s ease forwards;
+      // animation delay is set in javaScript 
+      //to make it fade in at exactly the end of the svg-animation
+
+      & path {
+        animation-name: svg-animation;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease;
+      }
+
+      @keyframes svg-animation {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      
+      @keyframes fill-color {
+      
+        to {
+          // fill: $red;
+          fill: rgb(116, 45, 40);
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+  
+  .btn-menu {
+    // to center the btn without flexbox
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translate(-5%, -50%);
+    // center the btn ends
+    z-index: 4;
+    padding: 0.2rem;
+    background: transparent;
+    border-radius: 0.3rem;
+    border: 0.2rem solid transparent;
+    cursor: pointer;
+    /* to make the text disappear visually */
+    font-size: 0;
+    
+    &:hover {
+      // border-color: #000;
+      border-color: $red;
+    }
+    
+    &__hamburger{
+      display: block;
+      width: 2rem;
+      height: 0.4rem;
+      // background: #333;
+      background: rgba(245, 69, 56, 0.7);
+      border-radius: 0.2rem;
+      margin: 0.4rem;
+      transition: all 0.5s ease-in-out;
+      pointer-events: none;//to make sure it's click through
+    }
+    /* MENU OPENED button */
+    &-opened {
+      border-color: transparent;
+      /* .btn */
+      & span {
+        // background-color: transparent;
+      
+        &:first-child {
+          transform: rotate(-150deg) translateY(-63px);
+          opacity: 0;
+          // display: none;
+        }
+        &:nth-child(2) {
+          transform: rotate(-40deg);
+        }
+        &:nth-child(3) {
+          transform: rotate(40deg) translate(-0.6rem, -0.5rem);
+        }
+      }
+      
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  
+  .nav-links {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    // background-color: rgb(13, 219, 192);
+    // background-color:  radial-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.3), rgba(245, 69, 56, 0.2));
+    background-color: rgb(17, 7, 6);
+    height: 100vh;
+    width: 100%;
+    list-style: none;
+    pointer-events: none;
+    clip-path: polygon(100% 100%, 100% 0%,100% 0%, 100% 100%);
+    /*because of browser support */
+    -webkit-clip-path: polygon(100% 100%, 100% 0%,100% 0%, 100% 100%);
+    transition: all 1s ease-out;
+  
+    &.open-menu{
+      clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%);
+      /*because of browser support*/
+      -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%);
+      pointer-events: all;
+    }
+  
+    &__items {
+      padding: 1rem 1.5rem;
+      // background-color: rgb(144, 236, 232);
+      border-radius: 0.3rem;
+      opacity: 0;
+      transform: translate(100vh, -100vh);
+  
+      &:first-child{
+        /* transition: property-to-animate anim-time fill-mode delay; */
+        transition: all 0.3s ease 0.1s;
+      }
+      
+      &:nth-child(2) {
+        transition: all 0.3s ease 0.2s;
+        
+      }
+    
+      &:nth-child(3) {
+        transition: all 0.3s ease 0.3;
+      }
+    
+      &:nth-child(4) {
+        transition: all 0.3s ease 0.4s;
+      }
+  
+      // the fade-in anime
+      &.fade-in {
+        opacity: 1;
+        transform: translate(0);
+      }
+  
+      & a {
+        // color: rgb(14, 35, 56);
+        // color: rgb(240, 236, 235);
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        border-bottom: 0.2rem solid transparent;
+        transition: all 0.4s ease;
+  
+        &:hover {
+          border-color: $red;
+        }
+      }
+    }
+  }
+}
+
+
+// header
+.showcase {
+  // min-height: calc(100vh - 3.75rem);
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+  // always link images with respect to css not sass
+  // background: linear-gradient(rgba(72, 0, 72, 0.8), rgba(192, 72, 72, 0.8)), url("../images_logos/apple pc.jpg");
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  // background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)) url("../images_logos/apple pc.jpg") no-repeat center center/cover;
+  background: url("../images_logos/apple pc.jpg") no-repeat center center/cover;
+
+  
+  // overlay
+  &__overlay {
+    // background: radial-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.7), rgba(245, 69, 56, 0.2));
+    background: linear-gradient(rgba(0, 0, 0,0.8), rgba(0, 0, 0, 0.7), rgba(245, 69, 56, 0.5));
+    color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  
+    .glass-background {
+      background: radial-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.5), rgba(245, 69, 56, 0.4));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem ;
+      border-radius: 1rem;
+
+
+      .greet {
+        font-size: 2rem;
+        // margin-left: 1rem;
+        // margin-top: 3rem;
+      }
+    
+      .kazeem {
+        display: block;
+        border-radius: 50%;
+        height: 15rem;
+      }
+    }
+  }
+}
+
+// About
+.git-and-about {
+  // color: rgb(11, 6, 32);
+  // padding: 1rem 2rem;
+  // display: flex;
+
+  .about {
+
+    .about-me {
+      margin-bottom: 1rem;
+      flex: 1;
+  
+    }
+  
+    .skills {
+      // browse a customized ul styling to use 
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-gap: 0.3rem;
+      margin: auto;
+      // background-color: red;
+      // grid
+      & li {
+        display:flex;
+        align-items: center;
+  
+        & .skills-icon {
+        display: block;
+        margin-right: 0.8rem;
+        // width: 0.3rem;
+        // height: 0.3rem;   
+        }
+      }
+   }
+  }
+}
+
+.projects {
+  // backgroun 
+}
+
+
+.footer {
+  // display: flex;
+  padding: 2rem;
+
+  h4 {
+    // color: red;
+  }
+
+  &__form {
+    flex: 1;
+
+    .form-wrap{
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+
+      .input,
+      .label {
+        margin-bottom: 0.2rem;
+        // color: red;
+        display: block;
+      }
+
+
+      .input,
+      .text-area {
+        border: 0.2rem solid #444;
+        padding: 0.3rem;
+        border-radius: 0.2rem;
+        resize: none;
+        
+      }
+      .general-focus:focus-visible {
+        border: none;
+        outline: 0.2rem solid rgb(2, 87, 13);
+        color: red;
+      }
+    }
+
+    .btn--submit {
+      display: inline-block;
+      margin: 1rem 0;
+    }
+  }
+}
+
+
+
+/* 
+tone down the animation to avoid vestibular motion triggers
+like scaling or panning large objects. 
+ */
+@media (preffers-reduced-motion) {
+/* remove / dissolve all animation (mobile and desktop */
+// below are elements with transitions
+// &__hamburger{
+  // .nav-links {
+// nav-links__items{
+  // transition: none;
+// }
+  // * {
+  //   transition: none;
+  // }
+}
+
+// also noscript
+
+
+@media screen and (min-width: 680px) {
+  body {
+    // display: none;
+  }
+
+  .nav {
+    position: unset;
+    height: unset;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+  
+    .logo {
+      height:  3.75rem;
+      display: flex;
+    }
+    
+    .btn-menu {
+      display: none;
+    }
+    
+    
+    .nav-links {
+      flex-direction: row;
+      position: unset;
+      height: unset;
+      width: unset;
+      pointer-events: all;
+      clip-path: none;
+      -webkit-clip-path: none;
+      transition: all 1s ease-out;
+      background-color: transparent;
+    
+      &__items {
+        margin-left: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        opacity: 1;
+        transform: none;
+    
+        &:first-child{
+          /* transition: property-to-animate anim-time fill-mode delay; */
+          transition: all 0.3s ease 0.1s;
+        }
+        
+        &:nth-child(2) {
+          transition: all 0.3s ease 0.2s;
+          
+        }
+      
+        &:nth-child(3) {
+          transition: all 0.3s ease 0.3;
+        }
+      
+        &:nth-child(4) {
+          transition: all 0.3s ease 0.4s;
+        }
+    
+    
+        & a {
+          // color: #fff;
+          font-size: 1.5rem;
+          // font-weight: bold;
+          // border-bottom: 0.2rem solid transparent;
+          // transition: all 0.4s ease;
+    
+          // &:hover {
+          //   border-color: $red;
+          // }
+        }
+      }
+    }
+  }
+
+  .git-and-about {
+    display: flex;
+    // flex-direction: row-reverse;
+    
+    .about {
+      flex: 3;
+  
+      .about-me {
+        margin-bottom: 1rem;
+    
+      .skills {
+        // browse a customized ul styling to use 
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        grid-gap: 0.3rem;
+        margin: auto;
+        // background-color: red;
+        // grid
+        & li {
+          display:flex;
+          align-items: center;
+    
+          & .skills-icon {
+          display: block;
+          margin-right: 0.8rem;
+          // width: 0.3rem;
+          // height: 0.3rem;   
+          }
+        }
+     }
+    }
+    }
+
+    .my-github {
+      flex: 2;
+    }
+  }
+}
+
+
+
+
+
+
+

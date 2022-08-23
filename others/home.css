@@ -1,0 +1,409 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: radial-gradient(#525252, #131313);
+  color: #f3f3f3;
+  line-height: 1.5;
+  font-size: 0.9rem; }
+
+.btn {
+  text-decoration: none; }
+  .btn:focus-visible {
+    outline: 0.2rem solid #f54538; }
+
+.px-1 {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+.px-2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
+.px-3 {
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+
+.py-1 {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
+.py-2 {
+  padding-top: 2rem;
+  padding-bottom: 2rem; }
+
+.py-3 {
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+
+.mx-1 {
+  margin-left: 1rem;
+  margin-right: 1rem; }
+
+.mx-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
+
+.mx-3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem; }
+
+.my-1 {
+  margin-left: 1rem;
+  margin-right: 1rem; }
+
+.my-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem; }
+
+.my-3 {
+  margin-top: 3rem;
+  margin-bottom: 3rem; }
+
+.nav {
+  position: relative;
+  height: 3.75rem; }
+  .nav .logo {
+    height: 3.75rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .nav .logo__content {
+      margin: auto 0.5rem;
+      fill: transparent;
+      -webkit-animation: fill-color 4s ease forwards;
+              animation: fill-color 4s ease forwards; }
+      .nav .logo__content path {
+        -webkit-animation-name: svg-animation;
+                animation-name: svg-animation;
+        -webkit-animation-fill-mode: forwards;
+                animation-fill-mode: forwards;
+        -webkit-animation-timing-function: ease;
+                animation-timing-function: ease; }
+@-webkit-keyframes svg-animation {
+  to {
+    stroke-dashoffset: 0; } }
+@keyframes svg-animation {
+  to {
+    stroke-dashoffset: 0; } }
+@-webkit-keyframes fill-color {
+  to {
+    fill: #742d28;
+    opacity: 0.8; } }
+@keyframes fill-color {
+  to {
+    fill: #742d28;
+    opacity: 0.8; } }
+  .nav .btn-menu {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    -webkit-transform: translate(-5%, -50%);
+            transform: translate(-5%, -50%);
+    z-index: 4;
+    padding: 0.2rem;
+    background: transparent;
+    border-radius: 0.3rem;
+    border: 0.2rem solid transparent;
+    cursor: pointer;
+    /* to make the text disappear visually */
+    font-size: 0;
+    /* MENU OPENED button */ }
+    .nav .btn-menu:hover {
+      border-color: #f54538; }
+    .nav .btn-menu__hamburger {
+      display: block;
+      width: 2rem;
+      height: 0.4rem;
+      background: rgba(245, 69, 56, 0.7);
+      border-radius: 0.2rem;
+      margin: 0.4rem;
+      -webkit-transition: all 0.5s ease-in-out;
+      transition: all 0.5s ease-in-out;
+      pointer-events: none; }
+    .nav .btn-menu-opened {
+      border-color: transparent;
+      /* .btn */ }
+      .nav .btn-menu-opened span:first-child {
+        -webkit-transform: rotate(-150deg) translateY(-63px);
+                transform: rotate(-150deg) translateY(-63px);
+        opacity: 0; }
+      .nav .btn-menu-opened span:nth-child(2) {
+        -webkit-transform: rotate(-40deg);
+                transform: rotate(-40deg); }
+      .nav .btn-menu-opened span:nth-child(3) {
+        -webkit-transform: rotate(40deg) translate(-0.6rem, -0.5rem);
+                transform: rotate(40deg) translate(-0.6rem, -0.5rem); }
+      .nav .btn-menu-opened:hover {
+        background-color: transparent; }
+  .nav .nav-links {
+    z-index: 2;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #110706;
+    height: 100vh;
+    width: 100%;
+    list-style: none;
+    pointer-events: none;
+    clip-path: polygon(100% 100%, 100% 0%, 100% 0%, 100% 100%);
+    /*because of browser support */
+    -webkit-clip-path: polygon(100% 100%, 100% 0%, 100% 0%, 100% 100%);
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out; }
+    .nav .nav-links.open-menu {
+      clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%);
+      /*because of browser support*/
+      -webkit-clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 100% 100%);
+      pointer-events: all; }
+    .nav .nav-links__items {
+      padding: 1rem 1.5rem;
+      border-radius: 0.3rem;
+      opacity: 0;
+      -webkit-transform: translate(100vh, -100vh);
+              transform: translate(100vh, -100vh); }
+      .nav .nav-links__items:first-child {
+        /* transition: property-to-animate anim-time fill-mode delay; */
+        -webkit-transition: all 0.3s ease 0.1s;
+        transition: all 0.3s ease 0.1s; }
+      .nav .nav-links__items:nth-child(2) {
+        -webkit-transition: all 0.3s ease 0.2s;
+        transition: all 0.3s ease 0.2s; }
+      .nav .nav-links__items:nth-child(3) {
+        -webkit-transition: all 0.3s ease 0.3;
+        transition: all 0.3s ease 0.3; }
+      .nav .nav-links__items:nth-child(4) {
+        -webkit-transition: all 0.3s ease 0.4s;
+        transition: all 0.3s ease 0.4s; }
+      .nav .nav-links__items.fade-in {
+        opacity: 1;
+        -webkit-transform: translate(0);
+                transform: translate(0); }
+      .nav .nav-links__items a {
+        color: #fff;
+        font-size: 2rem;
+        font-weight: bold;
+        border-bottom: 0.2rem solid transparent;
+        -webkit-transition: all 0.4s ease;
+        transition: all 0.4s ease; }
+        .nav .nav-links__items a:hover {
+          border-color: #f54538; }
+
+.showcase {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  background: url("../images_logos/apple pc.jpg") no-repeat center center/cover; }
+  .showcase__overlay {
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.8)), color-stop(rgba(0, 0, 0, 0.7)), to(rgba(245, 69, 56, 0.5)));
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7), rgba(245, 69, 56, 0.5));
+    color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    padding: 1rem; }
+    .showcase__overlay .glass-background {
+      background: radial-gradient(black, rgba(0, 0, 0, 0.5), rgba(245, 69, 56, 0.4));
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-pack: center;
+          -ms-flex-pack: center;
+              justify-content: center;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 1rem; }
+      .showcase__overlay .glass-background .greet {
+        font-size: 2rem; }
+      .showcase__overlay .glass-background .kazeem {
+        display: block;
+        border-radius: 50%;
+        height: 15rem; }
+
+.git-and-about .about .about-me {
+  margin-bottom: 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1; }
+.git-and-about .about .skills {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-gap: 0.3rem;
+  margin: auto; }
+  .git-and-about .about .skills li {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .git-and-about .about .skills li .skills-icon {
+      display: block;
+      margin-right: 0.8rem; }
+
+.footer {
+  padding: 2rem; }
+  .footer__form {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+    .footer__form .form-wrap {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      margin-top: 1rem; }
+      .footer__form .form-wrap .input,
+      .footer__form .form-wrap .label {
+        margin-bottom: 0.2rem;
+        display: block; }
+      .footer__form .form-wrap .input,
+      .footer__form .form-wrap .text-area {
+        border: 0.2rem solid #444;
+        padding: 0.3rem;
+        border-radius: 0.2rem;
+        resize: none; }
+      .footer__form .form-wrap .general-focus:focus-visible {
+        border: none;
+        outline: 0.2rem solid #02570d;
+        color: red; }
+    .footer__form .btn--submit {
+      display: inline-block;
+      margin: 1rem 0; }
+
+/* 
+tone down the animation to avoid vestibular motion triggers
+like scaling or panning large objects. 
+ */
+@media (preffers-reduced-motion) {
+  /* remove / dissolve all animation (mobile and desktop */ }
+@media screen and (min-width: 680px) {
+  .nav {
+    position: unset;
+    height: unset;
+    padding: 0.5rem 1rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between; }
+    .nav .logo {
+      height: 3.75rem;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex; }
+    .nav .btn-menu {
+      display: none; }
+    .nav .nav-links {
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: row;
+              flex-direction: row;
+      position: unset;
+      height: unset;
+      width: unset;
+      pointer-events: all;
+      clip-path: none;
+      -webkit-clip-path: none;
+      -webkit-transition: all 1s ease-out;
+      transition: all 1s ease-out;
+      background-color: transparent; }
+      .nav .nav-links__items {
+        margin-left: 1rem;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        opacity: 1;
+        -webkit-transform: none;
+                transform: none; }
+        .nav .nav-links__items:first-child {
+          /* transition: property-to-animate anim-time fill-mode delay; */
+          -webkit-transition: all 0.3s ease 0.1s;
+          transition: all 0.3s ease 0.1s; }
+        .nav .nav-links__items:nth-child(2) {
+          -webkit-transition: all 0.3s ease 0.2s;
+          transition: all 0.3s ease 0.2s; }
+        .nav .nav-links__items:nth-child(3) {
+          -webkit-transition: all 0.3s ease 0.3;
+          transition: all 0.3s ease 0.3; }
+        .nav .nav-links__items:nth-child(4) {
+          -webkit-transition: all 0.3s ease 0.4s;
+          transition: all 0.3s ease 0.4s; }
+        .nav .nav-links__items a {
+          font-size: 1.5rem; }
+
+  .git-and-about {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .git-and-about .about {
+      -webkit-box-flex: 3;
+          -ms-flex: 3;
+              flex: 3; }
+      .git-and-about .about .about-me {
+        margin-bottom: 1rem; }
+        .git-and-about .about .about-me .skills {
+          list-style: none;
+          display: grid;
+          grid-template-columns: repeat(2, auto);
+          grid-gap: 0.3rem;
+          margin: auto; }
+          .git-and-about .about .about-me .skills li {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center; }
+            .git-and-about .about .about-me .skills li .skills-icon {
+              display: block;
+              margin-right: 0.8rem; }
+    .git-and-about .my-github {
+      -webkit-box-flex: 2;
+          -ms-flex: 2;
+              flex: 2; } }
